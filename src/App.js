@@ -22,13 +22,13 @@ class App extends React.Component {
     favoriteDog: "",
   };
 
-  pickNewFavorite() {
+  pickNewFavorite = () => {
     let newDogIndex = Math.floor(Math.random() * this.state.dogs.length);
-    this.setState({ favoriteDog:newDogIndex });
+    return this.state.dogs[newDogIndex];
   }
 
-  componentDidMount() {
-   this.pickNewFavorite()
+  componentDidMount =() => {
+    this.setState({ favoriteDog: this.pickNewFavorite() });
   }
 
   render(){
@@ -41,8 +41,8 @@ class App extends React.Component {
           <Dog dog={dog} />
         ))}
       </div>
-      <h2>My Favorite dog is {this.state.favoriteDog}</h2>
-      <button onClick={this.pickNewFavorite}>Pick a new favorite!</button>
+      <h2>My Favorite dog is {this.state.favoriteDog.name}</h2>
+      <button onClick={this.componentDidMount}>Pick a new favorite!</button>
     </div>
     );
   }
